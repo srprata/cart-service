@@ -24,7 +24,12 @@ public class ProductService {
 	
 	@GraphQLQuery(name = "getProducts", description = "List of all products")
     public List<Product> getProducts() {
-		return productRepository.findAllProductIdNotNullByOrderByTitleAsc();
+		return productRepository.findAllByOrderByTitleAsc();
+    }
+	
+	@GraphQLQuery(name = "getProductById", description = "List of all products")
+	public Product getProductById(@GraphQLArgument(name = "productId") Integer productId) {
+		return productRepository.findByProductId(productId);
     }
 	
 	@GraphQLMutation(name = "saveProduct", description = "Save products in database")

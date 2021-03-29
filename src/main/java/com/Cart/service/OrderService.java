@@ -24,7 +24,7 @@ public class OrderService {
 	
 	@GraphQLQuery(name = "getOrders", description = "List of all orders")
     public List<Order> getOrders() {
-		return orderRepository.findAllOrderIdNotNullByOrderByOrderIdAsc();
+		return orderRepository.findAllByOrderByOrderIdAsc();
     }
 	
 	@GraphQLMutation(name = "saveOrder", description = "Save orders in database")

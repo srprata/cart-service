@@ -10,6 +10,4 @@ public interface OrderRepository extends MongoRepository<Order, Integer>  {
 
 	List<Order> findAllByOrderByOrderIdAsc();
 
-	List<Order> findAllOrderIdNotNullByOrderByOrderIdAsc();
-
 }

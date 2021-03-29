@@ -10,7 +10,6 @@ public interface ProductRepository extends MongoRepository<Product, Integer> {
 
 	List<Product> findAllByOrderByTitleAsc();
 
-	List<Product> findAllProductIdNotNullByOrderByTitleAsc();
-	
+	Product findByProductId(Integer productId);
 
 }

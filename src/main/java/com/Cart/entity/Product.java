@@ -2,6 +2,8 @@ package com.Cart.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.Cart.util.Util;
+
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Data;
 
@@ -26,5 +28,12 @@ public class Product {
 	
 	@GraphQLQuery(name = "imgId", description = "Product image Id")
 	private Integer imgId;
+	
+	public String getPriceReal() {
+		if(this.price == null)
+			return null;
+		else
+			return Util.currencyBrasil(this.price);
+	}
 	
 }
