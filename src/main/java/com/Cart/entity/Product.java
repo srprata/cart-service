@@ -23,13 +23,10 @@ public class Product {
 	@GraphQLQuery(name = "price", description = "Product price")
 	private Float price;
 	
-	@GraphQLQuery(name = "qty", description = "Product quantity")
-	private Integer qty;
+	@GraphQLQuery(name = "stock", description = "Product stock")
+	private Integer stock;
 	
-	@GraphQLQuery(name = "imgId", description = "Product image Id")
-	private Integer imgId;
-	
-	public String getPriceReal() {
+	public String getPriceBRL() {
 		if(this.price == null)
 			return null;
 		else
