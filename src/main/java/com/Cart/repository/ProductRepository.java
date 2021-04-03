@@ -12,4 +12,8 @@ public interface ProductRepository extends MongoRepository<Product, Integer> {
 
 	Product findByProductId(Integer productId);
 
+	Product findById(String id);
+
+	List<Product> findAllByStockGreaterThanOrderByTitleAsc(int i);
+
 }

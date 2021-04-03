@@ -8,6 +8,6 @@ import com.Cart.entity.Order;
 
 public interface OrderRepository extends MongoRepository<Order, Integer>  {
 
-	List<Order> findAllByOrderByOrderIdAsc();
+	List<Order> findAllByOrderByIdAsc();
 
 }

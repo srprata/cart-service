@@ -21,15 +21,29 @@ public class OrderService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	@Autowired
+	private ProductService productService;
 	
 	@GraphQLQuery(name = "getOrders", description = "List of all orders")
     public List<Order> getOrders() {
-		return orderRepository.findAllByOrderByOrderIdAsc();
+		return orderRepository.findAllByOrderByIdAsc();
     }
 	
 	@GraphQLMutation(name = "saveOrder", description = "Save orders in database")
 	public Order saveOrder(@GraphQLArgument(name = "order") Order order) {
-		return orderRepository.save(order);
+		
+		Order orderData = new Order();
+		
+		boolean response = productService.verifyProductStock(order.getProducts());
+		
+		if(response){
+			orderData = orderRepository.save(order);
+		}else{
+			orderData.setMsg("Estoque de produtos insuficiente");
+		}
+		
+		return order;
+		
 	}
 	
 }

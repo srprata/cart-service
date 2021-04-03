@@ -1,8 +1,7 @@
 package com.Cart.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.Cart.util.Util;
 
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Data;
@@ -11,7 +10,11 @@ import lombok.Data;
 @Document
 public class Product {
 
-    @GraphQLQuery(name = "productId", description = "Product id")
+    @Id
+    @GraphQLQuery(name = "id", description = "Database id")
+    private String id;
+	
+	@GraphQLQuery(name = "productId", description = "Product id")
 	private Integer productId;
 	
 	@GraphQLQuery(name = "title", description = "Product")
@@ -26,11 +29,7 @@ public class Product {
 	@GraphQLQuery(name = "stock", description = "Product stock")
 	private Integer stock;
 	
-	public String getPriceBRL() {
-		if(this.price == null)
-			return null;
-		else
-			return Util.currencyBrasil(this.price);
-	}
+	@GraphQLQuery(name = "qty", description = "Qty bought in a order")
+	private Integer qty;
 	
 }
